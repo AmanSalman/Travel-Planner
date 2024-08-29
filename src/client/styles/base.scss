@@ -1,0 +1,43 @@
+@import 'variables';
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: $text-color;
+    background-color: $background-color;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+main {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#results-section {
+  margin-top: 2rem;
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  h2 {
+     color: $primary-color;
+     font-size: 1.75rem;
+     margin-bottom: 1rem;
+  }
+  p {
+   font-size: 1.2rem;
+   font-weight: 600;
+   color: $primary-color;
+   margin: 0.75rem 0;
+   line-height: 1.5;
+   background-color: rgba(255, 105, 180, 0.1);
+   border-radius: 8px;
+   padding: 0.5rem;
+  }
+}

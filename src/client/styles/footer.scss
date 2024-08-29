@@ -1,0 +1,10 @@
+@import 'variables';
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: $primary-color;
+    color: #fff;
+    margin-top: 2rem;
+    border-top: 5px solid $button-hover-color;
+}

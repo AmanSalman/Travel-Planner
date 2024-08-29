@@ -4,36 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel App</title>
-    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
     <div class="background-image">
-        <!-- <header>
-            <h1>Travel Dreams</h1>
-        </header> -->
         <main>
             <section id="search">
                 <h2>Where Will Your Journey Take You?</h2>
-                <form>
-                    <input type="text" id="destination" name="destination" placeholder="Enter city or country">
-                    <input type="date" id="date" name="date">
+                <form id="travel-form">
+                    <input type="text" id="destination" name="destination" placeholder="Enter city or country" required>
+                    <input type="date" id="date" name="date" required>
                     <button type="submit">Search</button>
                 </form>
             </section>
-            <!-- <section id="results">
+            <section id="results">
                 <div id="weather-info" class="info-card">
                     <h3>Weather</h3>
-                    <p>No results yet.</p>
+                    <p id="weather-result">No results yet.</p>
                 </div>
                 <div id="image-info" class="info-card">
                     <h3>Image</h3>
-                    <p>No image available.</p>
+                    <img id="location-image" src="" alt="Location image" style="display:none; max-width: 100%;"/>
                 </div>
-            </section> -->
+            </section>
         </main>
-        <!-- <footer>
+
+        <footer>
             <p>&copy; 2024 Aman. All rights reserved.</p>
-        </footer> -->
+        </footer>
     </div>
 </body>
 </html>

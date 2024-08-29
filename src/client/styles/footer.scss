@@ -1,10 +1,17 @@
 @import 'variables';
 
 footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: $primary-color;
-    color: #fff;
-    margin-top: 2rem;
-    border-top: 5px solid $button-hover-color;
+  background-color: rgba(255, 255, 255);
+  color: $primary-color;
+  text-align: center;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
 }

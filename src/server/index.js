@@ -2,8 +2,10 @@ const express = require('express');
 const axios = require('axios');
 const path = require('path');
 const cors = require('cors');
-const dotenv = require('dotenv').config()
-
+const getCityLocation = require('./CityLocation.js');
+const fetchWeatherForecast = require('./WeatherForecast.js');
+const getImageForCity = require('./GetImage.js'); // Import the getImage function
+const dotenv = require('dotenv').config();
 
 const app = express();
 
@@ -13,49 +15,52 @@ app.use(express.static(path.join(__dirname, '../../dist')));
 
 const port = process.env.PORT;
 
-
-const API_KEY = process.env.MEANINGCLOUD_API_KEY;
-console.log(API_KEY)
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../dist/index.html'));
 });
 
-app.post('/analyze', async (req, res) => {
-  const { url } = req.body;
-  if (!url) {
-    return res.status(400).json({ message: 'URL is required' });
-  }
-
-  try {
-    const response = await axios.post('https://api.meaningcloud.com/sentiment-2.1', null, {
-      params: {
-        key: API_KEY,
-        url: url,
-        lang: 'en',
-      },
-    });
-
-    const { data } = response;
-
-    if (data.status.code === '0') {
-      const result = {
-        agreement: data.agreement || 'N/A',
-        confidence: data.confidence || 'N/A',
-        irony: data.irony || 'N/A',
-        model: data.model || 'N/A',
-        scoreTag: data.score_tag || 'N/A',
-        subjectivity: data.subjectivity || 'N/A',
-      };
-
-      res.json(result);
-    } else {
-      res.status(400).json({ message: data.status.msg });
+app.get('/coordinates', async (req, res) => {
+    const location = req.query.location;
+    if (!location) {
+        return res.status(400).json({ message: 'Location is required' });
     }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+
+    try {
+        const coordinates = await getCityLocation(location);
+        res.json(coordinates);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
 });
 
+app.get('/weather', async (req, res) => {
+    const { lat, lng, date } = req.query;
+    
+    if (!lat || !lng || !date) {
+        return res.status(400).json({ message: 'Latitude, Longitude, and Date are required' });
+    }
+
+    try {
+        const weatherForecast = await fetchWeatherForecast(lat, lng, date);
+        res.json(weatherForecast);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+app.get('/image', async (req, res) => {
+    const location = req.query.location;
+    if (!location) {
+        return res.status(400).json({ message: 'Location is required' });
+    }
+
+    try {
+        const imageUrl = await getImageForCity(location);
+        res.json({ imageUrl });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);

@@ -14,7 +14,8 @@ const getImageForCity = async (location) => {
         });
 
         const data = response.data;
-        return data.hits.length > 0 ? data.hits[0].webformatURL : '';
+        // return data.hits.length > 0 ? data.hits[0].webformatURL : '';
+        return 
 
     } catch (error) {
         console.error('Error fetching image from Pixabay:', error);

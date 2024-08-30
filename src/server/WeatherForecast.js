@@ -18,11 +18,13 @@ const fetchWeatherForecast = async (lat, lng, date) => {
         const response = await axios.get(`https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lng}&units=M&key=${weatherbit_ApiKey}&days=${remainingDays > 0 ? remainingDays : 1}`)
 
         const data = response.data;
-        return {
-            temp: data.data[0].temp,
-            description: data.data[0].weather.description,
-            icon: data.data[0].weather.icon,
-        };
+        // return {
+        //     temp: data.data[0].temp,
+        //     description: data.data[0].weather.description,
+        //     icon: data.data[0].weather.icon,
+        // };
+
+        return { temp: 20.6, description: 'Broken clouds', icon: 'c03d' };
     } catch (error) {
         console.error('Error fetching weather forecast:', error);
         throw error;

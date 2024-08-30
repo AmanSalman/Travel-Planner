@@ -11,8 +11,12 @@
             <section id="search">
                 <h2>Where Will Your Journey Take You?</h2>
                 <form id="travel-form">
+                    <label for="destination">Destination</label>
                     <input type="text" id="destination" name="destination" placeholder="Enter city or country" required>
+                    <label for="date">Start Date</label>
                     <input type="date" id="date" name="date" required>
+                    <label for="date">End Date</label>
+                    <input type="date" id="end-date" name="end-date">
                     <button type="submit">Search</button>
                 </form>
             </section>
@@ -24,6 +28,10 @@
                 <div id="image-info" class="info-card">
                     <h3>Image</h3>
                     <img id="location-image" src="" alt="Location image" style="display:none; max-width: 100%;"/>
+                </div>
+                <div id="trip-info" class="info-card">
+                    <h3>Trip Information</h3>
+                    <p id="trip-length">Length of trip: </p>
                 </div>
             </section>
         </main>

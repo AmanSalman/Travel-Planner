@@ -27,6 +27,7 @@ app.get('/coordinates', async (req, res) => {
 
     try {
         const coordinates = await getCityLocation(location);
+        console.log(coordinates)
         res.json(coordinates);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -42,6 +43,7 @@ app.get('/weather', async (req, res) => {
 
     try {
         const weatherForecast = await fetchWeatherForecast(lat, lng, date);
+        console.log(weatherForecast)
         res.json(weatherForecast);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -55,8 +57,9 @@ app.get('/image', async (req, res) => {
     }
 
     try {
-        const imageUrl = await getImageForCity(location);
-        res.json({ imageUrl });
+        // const imageUrl = await getImageForCity(location);
+        // console.log(imageUrl)
+        res.json({ imageUrl:'https://pixabay.com/get/g39d70e0625139b403b486d8888c7ed0331a8b82044eaa4692a04c35bfbb9a25261afa888ac2643d4a63b0700390f6270e631dca4acfd120b9a5abaa127cdac81_640.jpg' });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

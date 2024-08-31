@@ -3,7 +3,6 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 
-// Mocking external dependencies
 jest.mock('../CityLocation.js');
 jest.mock('../WeatherForecast.js');
 jest.mock('../GetImage.js');
@@ -62,13 +61,13 @@ app.get('/image', async (req, res) => {
 
   try {
     const imageUrl = await getImageForCity(location);
-    res.json({ imageUrl }); // Corrected closing bracket
+    res.json({ imageUrl });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-// Mock implementations for the tests
+
 getCityLocation.mockResolvedValue({ lat: 40.7128, lng: -74.0060 });
 fetchWeatherForecast.mockResolvedValue({ forecast: 'Sunny', temperature: 25 });
 getImageForCity.mockResolvedValue('https://pixabay.com/get/example-image.jpg');

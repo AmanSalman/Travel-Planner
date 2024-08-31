@@ -1,5 +1,4 @@
-// calculateTripLength.test.js
-import { calculateTripLength } from '../calculateTripLength.js'; // Adjust the import path as necessary
+import { calculateTripLength } from '../calculateTripLength.js';
 
 describe('calculateTripLength', () => {
   it('should calculate the correct trip length for valid dates', () => {
@@ -28,7 +27,7 @@ describe('calculateTripLength', () => {
     
     const result = calculateTripLength(startDate, endDate);
     
-    expect(result).toBeNaN(); // Expect NaN when input dates are invalid
+    expect(result).toBeNaN();
   });
 
   it('should calculate the correct trip length when end date is before start date', () => {

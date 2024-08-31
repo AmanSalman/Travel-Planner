@@ -4,7 +4,7 @@ const path = require('path');
 const cors = require('cors');
 const getCityLocation = require('./CityLocation.js');
 const fetchWeatherForecast = require('./WeatherForecast.js');
-const getImageForCity = require('./GetImage.js'); // Import the getImage function
+const getImageForCity = require('./GetImage.js');
 const dotenv = require('dotenv').config();
 
 const app = express();

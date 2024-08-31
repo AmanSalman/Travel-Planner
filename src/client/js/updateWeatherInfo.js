@@ -1,5 +1,3 @@
-
-
 const updateWeatherInfo = (weatherData) => {
   const weatherInfoElement = document.getElementById('weather-results');
   

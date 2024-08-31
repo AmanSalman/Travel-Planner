@@ -24,4 +24,5 @@ const getCityLocation = async (location) => {
   }
 };
 
+
 module.exports = getCityLocation;

@@ -1,0 +1,99 @@
+@import 'variables';
+
+#saved-trips {
+  background-color:#4971aea3;
+  color: $text-color;
+  border-radius: $border-radius;
+
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  h3 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: white;
+      font-family: 'Dancing Script', cursive;
+  }
+
+  #display-trips {
+      background-color: #b4dbed91;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: $border-radius;
+      cursor: pointer;
+      font-size: 1rem;
+      transition:0.5s ease;
+      &:hover {
+        background-color: #b4dbed;
+      }
+  }
+
+  #trip-list {
+      margin-top: 15px;
+  }
+
+  #hide-trips {
+      background-color: #ea7d7dbd;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: $border-radius;
+      cursor: pointer;
+      font-size: 1rem;
+      transition:0.3s ease;
+      margin-top: 15px;
+      &:hover {
+        background-color: #ea7d7d;
+      }
+  }
+}
+
+.trip {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
+}
+
+
+.deleteTrip {
+  background-color: $primary-color;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: $border-radius;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1rem;
+  width: fit-content;
+
+  &:hover {
+      background-color: #d55;
+      transform: scale(1.05);
+  }
+
+  &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px $accent-color;
+  }
+
+  &:active {
+      background-color: darken($button-color, 10%);
+  }
+}
+
+
+.trip-img {
+  width:70%;
+  margin-top: 1rem;
+  object-fit: cover;
+  border-radius: $border-radius;
+}

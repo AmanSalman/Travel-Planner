@@ -1,7 +1,7 @@
 
 
 const updateWeatherInfo = (weatherData) => {
-  const weatherInfoElement = document.getElementById('weather-result');
+  const weatherInfoElement = document.getElementById('weather-results');
   
   const weatherInfo = `
       Temperature: ${weatherData.temp}<br>

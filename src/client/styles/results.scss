@@ -1,9 +1,14 @@
 @import 'variables';
 
 #results {
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 1.5rem;
+  border: 2px dashed #ea7d7d;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 2rem auto;
+  padding: 1rem 2rem;
 
   .info-card {
     background-color: white;
@@ -20,5 +25,47 @@
     p {
       margin: 0;
     }
+  }
+
+  
+  h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: $primary-color;
+    text-align: center;
+    margin: 1.5rem 0;
+    padding: 0.5rem;
+    border-bottom: 3px solid #ea7d7dbd;
+    letter-spacing: 0.5px;
+  }
+}
+
+
+#clear-results {
+  background-color: #ea7d7dbd;
+  color: white;
+  border: none;
+  border-radius: $border-radius;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin: 5px;
+  width: fit-content;
+  margin: auto;
+
+  &:hover {
+      background-color: #ea7d7d;
+      transform: scale(1.05);
+  }
+
+  &:focus {
+      outline: none;
+  }
+
+  &:disabled {
+      background-color: lighten($button-color, 20%);
+      cursor: not-allowed;
   }
 }

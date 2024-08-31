@@ -4,26 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travel App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap">
 </head>
 <body>
+    <div class="loader" id="loader"></div>
     <div class="background-image">
+        <header>
+            <!-- "Go to Saved Trips" Button -->
+            <button id="go-to-saved-trips" class="nav-button">Go to Saved Trips</button>
+        </header>
         <main>
             <section id="search">
-                <h2>Where Will Your Journey Take You?</h2>
+                <h2>Where Will Your Journey Take You? ✈️🌏</h2>
                 <form id="travel-form">
-                    <label for="destination">Destination</label>
-                    <input type="text" id="destination" name="destination" placeholder="Enter city or country" required>
-                    <label for="date">Start Date</label>
-                    <input type="date" id="date" name="date" required>
-                    <label for="date">End Date</label>
-                    <input type="date" id="end-date" name="end-date">
+                    <button type="button" id="add-destination">Add Another Destination</button>
+                    <div id="destinations">
+                        <div class="destination">
+                            <label for="destination">Destination</label>
+                            <input type="text" name="destination" placeholder="Enter city or country" required>
+                        </div>
+                    </div>
+                    <label for="start-date">Start Date</label>
+                    <input type="date" id="start-date" name="start-date" required>
+                    <label for="end-date">End Date</label>
+                    <input type="date" id="end-date" name="end-date" required>
                     <button type="submit">Search</button>
                 </form>
             </section>
             <section id="results">
+                <h2>Your Trip :</h2>
                 <div id="weather-info" class="info-card">
                     <h3>Weather</h3>
-                    <p id="weather-result">No results yet.</p>
+                    <div id="weather-results"></div>
                 </div>
                 <div id="image-info" class="info-card">
                     <h3>Image</h3>
@@ -33,12 +45,33 @@
                     <h3>Trip Information</h3>
                     <p id="trip-length">Length of trip: </p>
                 </div>
+                <button id="clear-results">Clear Results</button>
             </section>
         </main>
+        <section id="saved-trips">
+            <h3>Saved Trips</h3>
+            <button id="display-trips">Display Saved Trips</button>
+            <button id="hide-trips">Hide Saved Trips</button>
+            <div id="trip-list"></div>
+        </section>
+        
+        <!-- New Sections -->
+        <section id="travel-lists" class="container">
+            <div class="list-container">
+                <h2>To-Do List</h2>
+                <input type="text" id="todo-input" placeholder="Add a new task">
+                <button id="addTodo">Add Task</button>
+                <ul id="todo-list"></ul>
+            </div>
 
+            <div class="list-container">
+                <h2>Packing List</h2>
+                <input type="text" id="packing-input" placeholder="Add an item to pack">
+                <button id="addPacking">Add Item</button>
+                <ul id="packing-list"></ul>
+            </div>
+        </section>
     </div>
-    <!-- <footer>
-        <p>&copy; 2024 Aman. All rights reserved.</p>
-    </footer> -->
+    <button id="scroll-up" class="scroll-button">&#9650;</button>
 </body>
 </html>

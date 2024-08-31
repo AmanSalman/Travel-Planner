@@ -1,0 +1,26 @@
+.scroll-button {
+  display: none;
+  background-color: #ea7d7dbd;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+      background-color: #ea7d7d;
+  }
+  
+  &.active {
+      transform: translateY(-30px);
+  }
+}
+
+.scroll-button.show {
+  display: block;
+}

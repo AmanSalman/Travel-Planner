@@ -65,7 +65,7 @@ To run this project locally, follow these steps:
      weatherbit_ApiKey = your_weatherbit_key
      username_ApiKey = your-Geaonnames-username
      pixabay_ApiKey = your_pixabay_key
-     PORT = 4000
+     PORT = 4002
    ```
 ## Scripts
 1. **Start Development**:

@@ -1,20 +1,30 @@
-const updateWeatherInfo = (weatherData) => {
+const updateWeatherInfo = (weatherData, destination) => {
   const weatherInfoElement = document.getElementById('weather-results');
-  
+
   const weatherInfo = `
-      Temperature: ${weatherData.temp}<br>
-      Description: ${weatherData.description}<br>
-      Icon: ${weatherData.icon}<br>
+      <div>
+          <strong>${destination}</strong><br>
+          Temperature: ${weatherData.temp}<br>
+          Description: ${weatherData.description}<br>
+          Icon: <p>${weatherData.icon}</p><br>
+      </div>
   `;
   
-  weatherInfoElement.innerHTML = weatherInfo;
+  weatherInfoElement.innerHTML += weatherInfo;
 };
 
-const updateImageInfo = (imageUrl) => {
-  const imageElement = document.getElementById('location-image');
-  imageElement.src = imageUrl;
-  imageElement.style.display = 'block';
+const updateImageInfo = (imageUrls) => {
+  const imageContainer = document.getElementById('image-container');
+
+  imageContainer.innerHTML = '';
+  imageUrls.forEach(url => {
+      const img = document.createElement('img');
+      img.src = url;
+      img.style.display = 'block';
+      imageContainer.appendChild(img);
+  });
 };
+
 
 const showError = (message) => {
   alert(message);

@@ -22,8 +22,7 @@
       font-weight: 600;
     }
 
-    input[type="text"],
-    input[type="date"] {
+    input{
       padding: 0.75rem;
       border: 1px solid #ddd;
       border-radius: $border-radius;

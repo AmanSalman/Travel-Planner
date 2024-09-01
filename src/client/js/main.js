@@ -16,8 +16,8 @@ document.getElementById('go-to-saved-trips').addEventListener('click', () => {
 export async function handleSubmit(event) {
     event.preventDefault();
 
-    const destinationInputs = Array.from(document.getElementsByName('destination'));
-    const destinations = Array.from(document.getElementsByName('destination')).map(input => input.value);
+    const destinationInputs = Array.from(document.querySelectorAll('input[name="destination"]'));
+    const destinations = destinationInputs.map(input => input.value.trim()).filter(value => value);
     const startDate = document.getElementById('start-date').value;
     const endDate = document.getElementById('end-date').value;
     const results = document.getElementById('results');
@@ -35,8 +35,9 @@ export async function handleSubmit(event) {
 
     document.getElementById('trip-length').textContent = `Length of trip: ${tripLength} days`;
 
-    const tripData = { destinations: [], startDate, endDate, tripLength, imageUrl:'' };
-    showLoader()
+    const tripData = { destinations: [], startDate, endDate, tripLength, imageUrls: [] };
+    showLoader();
+
     try {
         for (const destination of destinations) {
             const coordinates = await fetchCoordinates(destination);
@@ -46,17 +47,20 @@ export async function handleSubmit(event) {
             tripData.destinations.push({ destination, weatherData });
 
             updateWeatherInfo(weatherData, destination);
+
+            // Fetch and store image URL for each destination
+            const imageData = await fetchImage(destination);
+            tripData.imageUrls.push(imageData.imageUrl);
+
+            // Update the image display if you want to show images for all destinations
+            updateImageInfo(tripData.imageUrls);
         }
 
-        const imageData = await fetchImage(destinations[0]);
-        updateImageInfo(imageData.imageUrl);
-
-        tripData.imageUrl = imageData.imageUrl;
         saveTrip(tripData);
-        
-        // Clear the main destination field
-        destinationInputs[0].value = '';
-        
+
+        // Clear all destination inputs
+        destinationInputs.forEach(input => input.value = '');
+
         // Remove all dynamically added destination fields
         const additionalDestinationFields = document.querySelectorAll('#destinations .destination:not(:first-child)');
         additionalDestinationFields.forEach(field => field.remove());
@@ -65,16 +69,14 @@ export async function handleSubmit(event) {
         document.getElementById('start-date').value = '';
         document.getElementById('end-date').value = '';
         results.style.display = 'flex';
-        hideLoader()
-        
+
     } catch (error) {
         console.error('Error:', error);
         showError('Failed to fetch data. Please try again.');
     } finally {
-        hideLoader()
+        hideLoader();
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     loadLists();

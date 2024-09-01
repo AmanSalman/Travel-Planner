@@ -9,6 +9,7 @@ const dotenv = require('dotenv').config();
 
 const app = express();
 
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../../dist')));
@@ -49,7 +50,6 @@ app.get('/weather', async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
-
 app.get('/image', async (req, res) => {
     const location = req.query.location;
     if (!location) {

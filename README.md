@@ -84,3 +84,12 @@ To run this project locally, follow these steps:
     ```bash 
     npm test
     ``` 
+## **Prerequisites**
+
+- **Node.js**: Ensure you have Node.js version `v22.3.0` installed.
+
+You can check your Node.js version by running:
+
+```bash
+node -v
+```

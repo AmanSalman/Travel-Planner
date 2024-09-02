@@ -3,7 +3,7 @@ const webpack = require("webpack"),
     { CleanWebpackPlugin } = require('clean-webpack-plugin'),
     CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-
+const { GenerateSW } = require("workbox-webpack-plugin");
     module.exports = {
         entry: ["./src/client/index.js"],
         module: {
@@ -36,5 +36,10 @@ const webpack = require("webpack"),
                 protectWebpackAssets: false,
                
             }),
+            new GenerateSW({
+                clientsClaim: true,
+                skipWaiting: true,
+              }),
+            
         ]
     }

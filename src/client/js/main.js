@@ -22,61 +22,89 @@ export async function handleSubmit(event) {
     const endDate = document.getElementById('end-date').value;
     const results = document.getElementById('results');
 
+    // Validate form input
     if (!destinations.length || !startDate || !endDate) {
         alert('Please fill in all fields.');
         return;
     }
 
+    // Calculate the trip length
     const tripLength = calculateTripLength(startDate, endDate);
     if (tripLength < 0) {
         alert('End date must be after start date.');
         return;
     }
 
+    // Display trip length
     document.getElementById('trip-length').textContent = `Length of trip: ${tripLength} days`;
 
-    const tripData = { destinations: [], startDate, endDate, tripLength, imageUrls: [] };
+    const tripData = {
+        destinations: [], 
+        startDate, 
+        endDate, 
+        tripLength, 
+        imageUrls: []
+    };
+
+    // Show a loading indicator
     showLoader();
 
     try {
+        // Loop through each destination and fetch related data
         for (const destination of destinations) {
-            const coordinates = await fetchCoordinates(destination);
-            const { lat, lng } = coordinates;
+            try {
+                // Fetch coordinates for the destination
+                const { lat, lng } = await fetchCoordinates(destination);
 
-            const weatherData = await fetchWeather(lat, lng, startDate);
-            tripData.destinations.push({ destination, weatherData });
+                // Fetch weather data for the destination
+                const weatherData = await fetchWeather(lat, lng, startDate);
+                tripData.destinations.push({ destination, weatherData });
 
-            updateWeatherInfo(weatherData, destination);
+                // Update the weather information in the UI
+                updateWeatherInfo(weatherData, destination);
 
-            // Fetch and store image URL for each destination
-            const imageData = await fetchImage(destination);
-            tripData.imageUrls.push(imageData.imageUrl);
-
-            // Update the image display if you want to show images for all destinations
-            updateImageInfo(tripData.imageUrls);
+                // Fetch image for the destination
+                const imageData = await fetchImage(destination);
+                tripData.imageUrls.push(imageData.imageUrl);
+            } catch (err) {
+                console.error(`Error fetching data for ${destination}:`, err);
+                showError(`Failed to fetch data for ${destination}.`);
+            }
         }
 
+        // Display fetched images for destinations
+        updateImageInfo(tripData.imageUrls);
+
+        // Save the trip data (e.g., to a database or local storage)
         saveTrip(tripData);
 
-        // Clear all destination inputs
-        destinationInputs.forEach(input => input.value = '');
+        // Reset input fields after successful submission
+        resetForm(destinationInputs);
 
-        // Remove all dynamically added destination fields
-        const additionalDestinationFields = document.querySelectorAll('#destinations .destination:not(:first-child)');
-        additionalDestinationFields.forEach(field => field.remove());
-
-        // Clear date fields
-        document.getElementById('start-date').value = '';
-        document.getElementById('end-date').value = '';
+        // Display results section
         results.style.display = 'flex';
-
     } catch (error) {
         console.error('Error:', error);
         showError('Failed to fetch data. Please try again.');
     } finally {
-        hideLoader();
+        hideLoader(); // Hide the loading indicator
     }
 }
+
+// Helper function to reset the form
+function resetForm(destinationInputs) {
+    // Clear all destination inputs
+    destinationInputs.forEach(input => input.value = '');
+
+    // Remove all dynamically added destination fields except the first
+    const additionalDestinationFields = document.querySelectorAll('#destinations .destination:not(:first-child)');
+    additionalDestinationFields.forEach(field => field.remove());
+
+    // Clear date fields
+    document.getElementById('start-date').value = '';
+    document.getElementById('end-date').value = '';
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     loadLists();

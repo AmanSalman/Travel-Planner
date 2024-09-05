@@ -38,11 +38,8 @@ export function displaySavedTrips() {
       <p>End Date: ${trip.endDate}</p>
       <p>Length: ${trip.tripLength} days</p>
     `;
-
-    // Append the image container to the trip element
     tripElement.appendChild(imageContainer);
 
-    // Add the delete button and its functionality
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('deleteTrip');
     deleteButton.textContent = 'Delete Trip';
@@ -52,7 +49,6 @@ export function displaySavedTrips() {
 
     tripElement.appendChild(deleteButton);
 
-    // Append the trip element to the trip list
     tripList.appendChild(tripElement);
   });
 }

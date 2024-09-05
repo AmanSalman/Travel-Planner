@@ -13,29 +13,49 @@ export function displaySavedTrips() {
   tripList.innerHTML = '';
 
   savedTrips.forEach((trip, index) => {
-      const tripElement = document.createElement('div');
-      tripElement.classList.add('trip');
+    const tripElement = document.createElement('div');
+    tripElement.classList.add('trip');
 
-      let tripDestinations = trip.destinations.map(d => d.destination).join(', ');
-      tripElement.innerHTML = `
-          <h4>Trip ${index + 1}</h4>
-          <p>Destinations: ${tripDestinations}</p>
-          <p>Start Date: ${trip.startDate}</p>
-          <p>End Date: ${trip.endDate}</p>
-          <p>Length: ${trip.tripLength} days</p>
-          <img src="${trip.imageUrl}" class="trip-img" alt="Location image">
-          <button class="deleteTrip">Delete Trip</button>
-      `;
+    let tripDestinations = trip.destinations.map(d => d.destination).join(', ');
+    
+    // Create a container for images
+    const imageContainer = document.createElement('div');
+    imageContainer.classList.add('image-container');
 
-      tripElement.querySelector('.deleteTrip').addEventListener('click', () => {
-        deleteTrip(index);
-      });
-      
-      tripList.appendChild(tripElement);
+    // Append each image to the container
+    trip.imageUrls.forEach(url => {
+      const img = document.createElement('img');
+      img.src = url;
+      img.classList.add('trip-img');
+      img.alt = 'Location image';
+      imageContainer.appendChild(img);
+    });
+
+    tripElement.innerHTML = `
+      <h4>Trip ${index + 1}</h4>
+      <p>Destinations: ${tripDestinations}</p>
+      <p>Start Date: ${trip.startDate}</p>
+      <p>End Date: ${trip.endDate}</p>
+      <p>Length: ${trip.tripLength} days</p>
+    `;
+
+    // Append the image container to the trip element
+    tripElement.appendChild(imageContainer);
+
+    // Add the delete button and its functionality
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('deleteTrip');
+    deleteButton.textContent = 'Delete Trip';
+    deleteButton.addEventListener('click', () => {
+      deleteTrip(index);
+    });
+
+    tripElement.appendChild(deleteButton);
+
+    // Append the trip element to the trip list
+    tripList.appendChild(tripElement);
   });
-  
 }
-
 
 document.getElementById('hide-trips').addEventListener('click', (event)=>{
   HideTrips();

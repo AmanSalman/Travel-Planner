@@ -29,4 +29,9 @@ module.exports = merge(common, {
         ],
         minimize: true,
     },
+    devServer: {
+        allowedHosts: "all",
+        hot: false,
+        port: 8081,
+      },
 })

@@ -76,3 +76,9 @@
     margin-bottom: 1rem;
   }
 }
+
+@media (min-width:320px) and (max-width:450px) {
+  #image-container img  {
+    width: 100%;
+  }
+}

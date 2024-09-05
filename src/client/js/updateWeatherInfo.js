@@ -15,15 +15,12 @@ const updateWeatherInfo = (weatherData, destination) => {
 
 const updateImageInfo = (imageUrls) => {
   const imageContainer = document.getElementById('image-container');
-
-  // Clear any existing images
   imageContainer.innerHTML = '';
 
-  // Create and append an img element for each URL
   imageUrls.forEach(url => {
       const img = document.createElement('img');
       img.src = url;
-      img.style.display = 'block'; // Ensure images are displayed as block-level elements
+      img.style.display = 'block';
       imageContainer.appendChild(img);
   });
 };

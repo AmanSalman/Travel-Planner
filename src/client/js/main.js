@@ -46,11 +46,9 @@ export async function handleSubmit(event) {
         imageUrls: []
     };
 
-    // Show a loading indicator
     showLoader();
 
     try {
-        // Loop through each destination and fetch related data
         for (const destination of destinations) {
             try {
                 // Fetch coordinates for the destination
@@ -75,32 +73,24 @@ export async function handleSubmit(event) {
         // Display fetched images for destinations
         updateImageInfo(tripData.imageUrls);
 
-        // Save the trip data (e.g., to a database or local storage)
         saveTrip(tripData);
 
-        // Reset input fields after successful submission
         resetForm(destinationInputs);
 
-        // Display results section
         results.style.display = 'flex';
     } catch (error) {
         console.error('Error:', error);
         showError('Failed to fetch data. Please try again.');
     } finally {
-        hideLoader(); // Hide the loading indicator
+        hideLoader();
     }
 }
 
-// Helper function to reset the form
 function resetForm(destinationInputs) {
-    // Clear all destination inputs
     destinationInputs.forEach(input => input.value = '');
 
-    // Remove all dynamically added destination fields except the first
     const additionalDestinationFields = document.querySelectorAll('#destinations .destination:not(:first-child)');
     additionalDestinationFields.forEach(field => field.remove());
-
-    // Clear date fields
     document.getElementById('start-date').value = '';
     document.getElementById('end-date').value = '';
 }

@@ -97,3 +97,10 @@
   object-fit: cover;
   border-radius: $border-radius;
 }
+
+
+@media (min-width:320px) and (max-width:450px) {
+  #saved-trips  {
+    width: 90%;
+  }
+}

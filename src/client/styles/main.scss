@@ -8,3 +8,10 @@ main {
     border-radius: $border-radius;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
+
+
+@media (min-width:320px) and (max-width:450px) {
+  main {
+    width: 90%;
+  }
+}

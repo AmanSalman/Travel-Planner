@@ -63,3 +63,10 @@
 #add-destination {
   margin-top: 1rem !important;
 }
+
+
+@media (min-width:320px) and (max-width:450px) {
+  #search h2 {
+    font-size: 1.6rem;
+  }
+}

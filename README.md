@@ -60,7 +60,7 @@ To run this project locally, follow these steps:
    npm install
    ```
 4. **Set Up Environment Variables**
-- Create a .env file in the root of your project directory with the following content:
+- Create an .env file in the root of your project directory with the following content:
    ```bash
      weatherbit_ApiKey = your_weatherbit_key
      username_ApiKey = your-Geaonnames-username
